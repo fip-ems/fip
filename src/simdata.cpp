@@ -28,8 +28,7 @@ namespace SimData
 	float* h_sohle, * h_precip;
 	float invalid_terrain = -9999.f;
 	uint64_t* d_mask;
-	float* d_timesteps;
-	float* h_cfl_ts;
+	float* dt_cfl_mins;
 	size_t num_compute_blocks;
 
 	bool is_staggered;
@@ -73,9 +72,7 @@ void initDeviceBuffers(const float* h_ah, const float* h_qx, const float* h_qy, 
 
 	checkCudaErrors(cudaMallocPitch(&d_retention, &pitch, num_bytes_line, H + 3));
 
-	checkCudaErrors(cudaMalloc(&d_timesteps, num_bytes_timesteps));
-	checkCudaErrors(cudaMallocHost(&h_cfl_ts, sizeof(float) * 2));
-	h_cfl_ts[0] = dt / 0.6f;
+	checkCudaErrors(cudaMallocHost(&dt_cfl_mins, num_bytes_timesteps));
 
 	// set mask to entirely wet (all bits 1)
 	checkCudaErrors(cudaMalloc(&d_mask, num_bytes_mask));
@@ -94,7 +91,7 @@ void initDeviceBuffers(const float* h_ah, const float* h_qx, const float* h_qy, 
 	float* h_timesteps = new float[num_bytes_timesteps];
 	for (int i = 0; i < num_bytes_timesteps; i++)
 		h_timesteps[i] = 1.f;
-	checkCudaErrors(cudaMemcpy(d_timesteps, h_timesteps, num_bytes_timesteps, cudaMemcpyHostToDevice));
+	checkCudaErrors(cudaMemcpy(dt_cfl_mins, h_timesteps, num_bytes_timesteps, cudaMemcpyHostToDevice));
 	delete[] h_timesteps;
 }
 

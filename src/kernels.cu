@@ -448,16 +448,10 @@ void launchComputeKernel()
 	rmg_kernel<num_block_rows, false> <<< grid, block >>>
 		(d_h1, d_h2, d_qx1, d_qx2, d_qy1, d_qy2, d_sohle,
 			d_rei, kSt_fixed, d_mask, dx, dt, W, H, pitch / 4,
-			d_timesteps,
+			dt_cfl_mins,
 			invalid_terrain);
 
 	duration += dt;
-}
-
-void launchTimestepReduceKernel()
-{
-	using namespace SimData;
-	timestep_reduce <<< 1, 1024 >>> (d_timesteps, h_cfl_ts, num_compute_blocks);
 }
 
 void launchFloodPlainKernel()

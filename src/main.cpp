@@ -24,7 +24,13 @@ float* dumpDeviceBuffer(float* device_buf);
 
 void controlTimestep()
 {
-	float targetTimestep = h_cfl_ts[0] * .5f;
+	float min_cfl = 42.0f;
+	
+	for (int i = 0; i < num_compute_blocks; i++)
+		if (dt_cfl_mins[i] < min_cfl)
+			min_cfl = dt_cfl_mins[i];
+
+	float targetTimestep = min_cfl * .5f;
 	constexpr float dc = 0.001f;
 	if (dt < targetTimestep && targetTimestep - dt > dc)
 	{
@@ -93,10 +99,8 @@ void launchBoundaryConditionKernel()
 
 void simulate()
 {
-	if (is_variable_dt && iteration % 10 == 9)
+	if (is_variable_dt)
 	{
-		launchTimestepReduceKernel();
-		cudaDeviceSynchronize();
 		controlTimestep();
 	}
 

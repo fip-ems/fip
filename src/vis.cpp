@@ -371,10 +371,7 @@ void Visualization::renderUntilExit(std::function<void()> launch_kernel)
 					else if (!animating && ImGui::Button("Start Simulation"))
 						animating = true;
 					ImGui::Text("Simulation Duration: %.2f s", SimData::duration);
-					int cfl_block_x = int(SimData::h_cfl_ts[1]) % (SimData::W / (28 * 4) * 4 + 4);
-					int cfl_block_y = int(SimData::h_cfl_ts[1]) / (SimData::W / (28 * 4) * 4 + 4);
-					glUniform2i(uniformHighlight, cfl_block_x * 28, cfl_block_y * 50);
-					ImGui::Text("Timestep: %.3f (%.3f, [%d, %d])", SimData::dt, SimData::h_cfl_ts[0], cfl_block_x, cfl_block_y);
+					ImGui::Text("Timestep: %.3f", SimData::dt);
 					ImGui::SliderInt("Simulation Speed", &simSpeed, 1, 200);
 				}
 				ImGui::Separator();

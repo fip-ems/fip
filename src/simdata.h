@@ -40,8 +40,7 @@ namespace SimData
 	extern float* h_sohle, * h_precip;
 	extern float invalid_terrain;
 	extern uint64_t* d_mask;
-	extern float* d_timesteps;
-	extern float* h_cfl_ts;
+	extern float* dt_cfl_mins;
 	extern size_t num_compute_blocks;
 	extern const size_t num_warps_per_tb;
 	extern const size_t num_block_rows;

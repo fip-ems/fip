@@ -1,4 +1,7 @@
+## Windows compilation
+You can build FIP on Windows using CMake and Visual Studio Community Edition. CUDA toolkit has to be installed in version 11.4 or above.
 
+Precompiled binaries for Windows can be found in the [Releases section](https://github.com/fip-ems/fip/releases).
 ## Linux compilation steps
 FIP may work fine with CUDA toolkit versions above 11.4. The following is an installation example for CUDA toolkit version 11.4 on Ubuntu 18.04. 
 ### CUDA Toolkit 11.4 installation

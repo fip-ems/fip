@@ -1,3 +1,14 @@
+# fip
+
+This repository provides the implementation of fip, the **F**lood **I**nundation **P**arallel computation model.
+> __[Accelerating flash flood simulations: An efficient GPU implementation for a slim shallow water solver](https://www.sciencedirect.com/science/article/pii/S1364815224000914)__  
+> [Arne Rak](https://orcid.org/0000-0001-6385-3455), [Peter Mewis](https://orcid.org/0000-0002-4918-3202),  [Stefan Guthe](https://orcid.org/0000-0001-5539-9096)  
+> _Environmental Modelling & Software, 2024_
+
+> __[Massively Parallel Large Scale Inundation Modelling](https://diglib.eg.org/items/d6320856-9753-49c4-a970-76722f6ca1f1)__  
+> [Arne Rak](https://orcid.org/0000-0001-6385-3455),  [Stefan Guthe](https://orcid.org/0000-0001-5539-9096), [Peter Mewis](https://orcid.org/0000-0002-4918-3202)  
+> _EGPGV@ EuroVis, 2022_  
+
 ## Windows compilation
 You can build FIP on Windows using CMake and Visual Studio Community Edition. CUDA toolkit has to be installed in version 11.4 or above.
 
